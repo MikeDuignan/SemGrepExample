@@ -1,0 +1,39 @@
+rules:
+  - id: dangerous-function-use
+    pattern: |
+      eval(...)
+      exec(...)
+      os.system(...)
+      subprocess.call(..., shell=True)
+    message: Dangerous function usage detected
+    languages: [python]
+    severity: ERROR
+    metadata:
+      category: security
+      technology:
+        - python
+
+  - id: hardcoded-password
+    pattern: |
+      password = "..."
+      pwd = "..."
+      secret = "..."
+    message: Potential hardcoded password detected
+    languages: [python]
+    severity: WARNING
+    metadata:
+      category: security
+      technology:
+        - python
+
+  - id: sql-injection
+    pattern: |
+      cursor.execute("..." + ...)
+      cursor.execute("..." % ...)
+    message: Potential SQL injection vulnerability
+    languages: [python]
+    severity: ERROR
+    metadata:
+      category: security
+      technology:
+        - python
